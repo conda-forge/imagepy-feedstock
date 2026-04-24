@@ -1,7 +1,5 @@
 {% set name = "imagepy" %}
 {% set version = "0.20" %}
-{% set hash_type = "sha256" %}
-{% set hash_value = "f014aacae161a03b05e6897cde6d086dfc9a6c504ef12719c9ed8d007ffd5b64" %}
 
 package:
   name: '{{ name|lower }}'
@@ -9,20 +7,20 @@ package:
 
 source:
   fn: '{{ name }}-{{ version }}.tar.gz'
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ hash_value }}
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: f014aacae161a03b05e6897cde6d086dfc9a6c504ef12719c9ed8d007ffd5b64
 
 build:
   noarch: python
-  number: 1
-  script: python -m pip install --no-deps --ignore-installed .
+  number: 2
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  build:
-    - python
+  host:
+    - python {{ python_min }}
     - pip
   run:
-    - python
+    - python >={{ python_min }}
     - scikit-image >=0.14.0
     - shapely >=1.0
     - wxpython >=4.0
@@ -37,6 +35,8 @@ requirements:
     - numpy-stl >=2.7
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - imagepy
 
