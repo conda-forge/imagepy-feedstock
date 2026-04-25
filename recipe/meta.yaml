@@ -1,7 +1,7 @@
 {% set name = "imagepy" %}
-{% set version = "0.20" %}
+{% set version = "0.21" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "f014aacae161a03b05e6897cde6d086dfc9a6c504ef12719c9ed8d007ffd5b64" %}
+{% set hash_value = "1e162ec00b7fc8ab309bea158488bfa97572292daed7c7a89575ef2d974486a0" %}
 
 package:
   name: '{{ name|lower }}'
@@ -14,7 +14,7 @@ source:
 
 build:
   noarch: python
-  number: 1
+  number: 0
   script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
